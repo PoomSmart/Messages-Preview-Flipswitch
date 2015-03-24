@@ -1,0 +1,9 @@
+Package: org.thebigboss.messagespreviewfs
+Name: Messages Preview Flipswitch
+Depends: mobilesubstrate, com.a3tweaks.flipswitch, firmware (>= 6.0)
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: Toggle for Show Messages Preview option.
+Maintainer: PoomSmart
+Author: PoomSmart
+Section: Addons (Flipswitch)

@@ -1,12 +1,12 @@
-SDKVERSION = 7.0
-ARCHS = armv7 arm64
+TARGET = iphone:latest
+DEBUG = 0
 
-include theos/makefiles/common.mk
+include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = MPFS
 MPFS_FILES = Switch.xm
 MPFS_FRAMEWORKS = UIKit
-MPFS_PRIVATEFRAMEWORKS = ManagedConfiguration
+MPFS_PRIVATE_FRAMEWORKS = BulletinBoard Preferences
 MPFS_LIBRARIES = flipswitch
 MPFS_INSTALL_PATH = /Library/Switches
 

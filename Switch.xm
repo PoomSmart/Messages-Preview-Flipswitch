@@ -4,7 +4,7 @@
 
 CFStringRef const kShowSMSPreviewKey = CFSTR("SBShowSMSPreview");
 CFStringRef const kSpringBoard = CFSTR("com.apple.springboard");
-CFStringRef const kSMSNotification = CFSTR("SpringBoardMessageSettingsChangedNotification");
+CFStringRef const kSMSNotification = isiOS9Up ? CFSTR("com.apple.bulletinboard.allowPublication") : CFSTR("SpringBoardMessageSettingsChangedNotification");
 NSString *const kSwitchIdentifier = @"com.PS.MPFS";
 NSString *const kMobileSMS = @"com.apple.MobileSMS";
 
@@ -42,15 +42,14 @@ static void PreferencesChanged()
 
 - (id)init
 {
-    if (self == [super init] && !isiOS9Up)
+    if (self == [super init])
 		CFNotificationCenterAddObserver(CFNotificationCenterGetDarwinNotifyCenter(), self, (CFNotificationCallback)PreferencesChanged, kSMSNotification, NULL, CFNotificationSuspensionBehaviorCoalesce);
     return self;
 }
 
 - (void)dealloc
 {
-	if (!isiOS9Up)
-		CFNotificationCenterRemoveObserver(CFNotificationCenterGetDarwinNotifyCenter(), self, kSMSNotification, NULL);
+	CFNotificationCenterRemoveObserver(CFNotificationCenterGetDarwinNotifyCenter(), self, kSMSNotification, NULL);
 	[super dealloc];
 }
 

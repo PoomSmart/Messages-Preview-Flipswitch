@@ -8,6 +8,10 @@ CFStringRef const kSMSNotification = isiOS9Up ? CFSTR("com.apple.bulletinboard.a
 NSString *const kSwitchIdentifier = @"com.PS.MPFS";
 NSString *const kMobileSMS = @"com.apple.MobileSMS";
 
+@interface BBServer : NSObject
++ (void)_writeSectionInfo:(NSDictionary *)info;
+@end
+
 @interface BBSectionInfo : NSObject
 @property(nonatomic, copy) NSString *sectionID;
 @property(nonatomic) BOOL showsMessagePreview;
@@ -67,8 +71,8 @@ static void PreferencesChanged()
 			if (!getState) {
 				info.showsMessagePreview = enabled;
 				[self.gateway setSectionInfo:info forSectionID:kMobileSMS];
-				BBServerSetAllowsPublication(YES);
-				//BBServerSetAllowsPublication(NO);
+				[BBServer _writeSectionInfo:@{ @"com.apple.MobileSMS" : info }];
+				//BBServerSetAllowsPublication(YES);
 			} else
 				enabledState = info.showsMessagePreview ? FSSwitchStateOn : FSSwitchStateOff;
 		}

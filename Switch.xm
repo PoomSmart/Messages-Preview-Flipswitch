@@ -41,7 +41,6 @@ static void PreferencesChanged()
 	[[FSSwitchPanel sharedPanel] stateDidChangeForSwitchIdentifier:kSwitchIdentifier];
 }
 
-
 @implementation MPFSSwitch
 
 - (id)init
